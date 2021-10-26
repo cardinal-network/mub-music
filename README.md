@@ -1,1 +1,1 @@
-# mub-music
+# nextjs-material-ui-news-website
