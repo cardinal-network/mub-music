@@ -18,28 +18,33 @@ export default function Header() {
         <meta name="viewport" content="width-device-width, initial-scale=1.0" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mubmusic.com/" />
-        <meta property="og:site_name" content="wpnews" />
+        <meta property="og:site_name" content="mubmusic" />
         <meta property="og:image" content="images/favicon-1.ico?w=64" />
         <meta property="og:locale" content="en" />
         <link rel="shortcut icon" href="/images/favicon.ico?w=64" type="image/x-icon" />
         <link rel="preconnect" href="https://mubdmn-dev.crdps.xyz/"></link>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MRZND74GE5"></script>
+        <script type="text/javascript" dangerouslySetInnerHTML={{ 
+            __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-MRZND74GE5');
+            `
+        }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ 
             __html: `
 			{
                 "@context": "https://schema.org",
                 "@type": "NewsMediaOrganization",
-                "name": "WPNews",
-                "alternateName": "Wordpress News",
-                "url": "https://mubdmn-dev.crdps.xyz/",
+                "name": "Mub Music",
+                "alternateName": "MubMusic",
+                "url": "https://mubmusic.com/",
                 "logo": "/logo.png",
                 "sameAs": [
-                    "https://www.facebook.com/wpnews",
-                    "https://twitter.com/wpnews",
                     "https://www.instagram.com/wpnews/",
-                    "https://www.youtube.com/user/wpnews",
-                    "http://www.linkedin.com/company/wpnews"
                 ]
                 }          
             `
