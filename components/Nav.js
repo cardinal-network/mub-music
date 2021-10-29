@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const NavContainer = styled.nav`
-  padding: 25px 0 0 0;
+  padding: 5px 0 0 0;
   float: right;
   @media (max-width: 1100px){
     padding: 22px 0 0 0;
