@@ -27,6 +27,7 @@ export default function Header() {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MRZND74GE5"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9820473628183581" crossorigin="anonymous"></script>
         <script type="text/javascript" dangerouslySetInnerHTML={{ 
             __html: `
                 window.dataLayer = window.dataLayer || [];
