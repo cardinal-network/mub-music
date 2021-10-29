@@ -83,7 +83,15 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                         margins={`35px 0 0 0`}
                         background={`#F5F5F7`}
                         dangerouslySetInnerHTML={{
-                          __html: ``,
+                          __html: `
+                          <ins class="adsbygoogle"
+                          style="display:block"
+                          data-ad-client="ca-pub-9820473628183581"
+                          data-ad-slot="4578178371"
+                          data-ad-format="auto"
+                          data-full-width-responsive="true"></ins>
+                          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                          `
                         }}
                       />
                     </Grid>
@@ -123,7 +131,15 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                     margins={`35px 0 20px 0`}
                     background={`#F5F5F7`}
                     dangerouslySetInnerHTML={{
-                      __html: ``,
+                      __html: `
+                      <ins class="adsbygoogle"
+                      style="display:block"
+                      data-ad-client="ca-pub-9820473628183581"
+                      data-ad-slot="8041946519"
+                      data-ad-format="auto"
+                      data-full-width-responsive="true"></ins>
+                      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                      `,
                     }}
                   />
                 </Grid>
@@ -187,7 +203,15 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       margins={`20px 0 20px 0`}
                       background={`#F5F5F7`}
                       dangerouslySetInnerHTML={{
-                        __html: ``,
+                        __html: `
+                        <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-9820473628183581"
+                        data-ad-slot="2994661634"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                        `,
                       }}
                     />
                   </Grid>
@@ -223,7 +247,15 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                           margins={`0`}
                           background={`#F5F5F7`}
                           dangerouslySetInnerHTML={{
-                            __html: ``,
+                            __html: `
+                            <ins class="adsbygoogle"
+                            style="display:block"
+                            data-ad-client="ca-pub-9820473628183581"
+                            data-ad-slot="1668109857"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"></ins>
+                            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                            `,
                           }}
                         />
                       </aside>
@@ -238,7 +270,15 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       margins={`10px 0 20px 0`}
                       background={`#F5F5F7`}
                       dangerouslySetInnerHTML={{
-                        __html: ``,
+                        __html: `
+                        <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-9820473628183581"
+                        data-ad-slot="1952015038"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                        `,
                       }}
                     />
                   </Grid>
@@ -271,7 +311,15 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       margins={`25px 0 10px 0`}
                       background={`#F5F5F7`}
                       dangerouslySetInnerHTML={{
-                        __html: ``,
+                        __html: `
+                        <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-9820473628183581"
+                        data-ad-slot="2937793647"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                        `,
                       }}
                     />
                   </Grid>
