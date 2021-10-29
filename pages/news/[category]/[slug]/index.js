@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import { AdContainer, StickyAdContainer } from '../../../../components/AdContainer';
 import StickyShare from '../../../../components/StickyShare';
 import formatDates from '../../../../utils/formatDates';
+import formatHtmlText from '../../../../utils/formatHtmlText';
 
 const ArticlePageMain = styled.main`
   margin: 20px 0;
@@ -169,22 +170,82 @@ const NewsBody = styled.div`
   }
 `;
 
-export default function ArticlePage({ postData }) {
+export default function ArticlePage({ postData, seoData }) {
   return (
     <>
       <Head>
-        <title>{postData[0].title.rendered} | Mub Music - Music World News</title>
-        <meta name="description" content={postData[0].excerpt.rendered} />
-        <meta property="og:title" content={postData[0].title.rendered} key="title" />
-        <meta property="og:description" content={postData[0].excerpt.rendered} />
+        <title>{seoData.title} | Mub Music - Music World News</title>
+        <meta name="description" content={seoData.excerpt} />
+        <meta property="og:title" content={seoData.title} key="title" />
+        <meta property="og:description" content={seoData.excerpt}/>
         <link rel="preload" href={postData[0].fimg_url} as="image" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ 
+        __html: `
+            {
+              "@context": "https://schema.org",
+              "@type": "NewsArticle",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://mubmusic.com/news/${postData[0].categories[0].category_slug}/${postData[0].slug}"
+              },
+              "headline": "${seoData.title}",
+              "description": "${seoData.excerpt}"
+              "image": "${postData[0].fimg_url}",
+              "datePublished": "${postData[0].date}",
+              "dateModified": "${postData[0].modified}",
+              "author": {
+                "@type": "Person",
+                "name": "${postData[0].author_meta[0].display_name}"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Elite Strategies",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://mubmusic.com/_next/image?url=%2Fmub-logo-icon.png&w=96&q=75"
+                }
+              },
+            }          
+        `
+        }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ 
+        __html: `
+            {
+              "@context": "https://schema.org/",
+              "@type": "BreadcrumbList",
+              "itemListElement": [{
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://mubmusic.com"
+                  },
+                  {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "News",
+                  "item": "https://mubmusic.com/news"
+                  },
+                  {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "${postData[0].categories[0].category_name}",
+                  "item": "https://mubmusic.com/news/${postData[0].categories[0].category_slug}"
+                  },
+                  {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "name": "${seoData.title}",
+                  "item": "https://mubmusic.com/${postData[0].categories[0].category_slug}/${postData[0].slug}"
+              }]       
+        `
+        }} />
       </Head>
       <Header />
       <ArticlePageMain>
         <Container maxWidth="lg">
           <Box sx={{ width: '100%'}}>
               <Grid container>
-                <Grid xs={12} sm={12} md={3} p={2} mt={40}>
+                <Grid xs={12} sm={12} md={3} p={2}>
                   <StickyShare
                     id="ad-1-970x250"
                     width={`100%`}
@@ -235,7 +296,7 @@ export default function ArticlePage({ postData }) {
                       />
                     </Grid>
                 </Grid>
-                <Grid xs={12} sm={12} md={3} p={2} mt={36}>
+                <Grid xs={12} sm={12} md={3} p={2}>
                   <StickyAdContainer
                     id="ad-1-970x250"
                     width={`100%`}
@@ -259,10 +320,15 @@ export default function ArticlePage({ postData }) {
 export const getStaticProps = async (context) => {
   const reqPosts = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts?slug=${context.params.slug}`);
   const postData = await reqPosts.json();
+  const seoData = {
+    title: formatHtmlText(postData[0].title.rendered),
+    excerpt: formatHtmlText(postData[0].excerpt.rendered)
+  };
 
   return {
     revalidate: 300,
     props: {
+      seoData,
       postData
     },
   };

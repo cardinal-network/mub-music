@@ -17,6 +17,9 @@ export const StickyAdContainer = styled.div`
   padding: 10px 0;
   border-radius: 8px;
   text-align:center;
+  @media only screen and (max-width: 768px) {
+    position: relative;
+  }
 `;
 
 const ShareContent = styled.div`

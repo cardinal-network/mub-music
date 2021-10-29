@@ -9,6 +9,7 @@ import Nav from './Nav';
 
 const HeaderContainer = styled.header`
   background: ${({ theme }) => theme.colors.secondary};
+  padding: 20px 0;
 `
 
 export default function Header() {
@@ -42,7 +43,7 @@ export default function Header() {
                 "name": "Mub Music",
                 "alternateName": "MubMusic",
                 "url": "https://mubmusic.com/",
-                "logo": "/logo.png",
+                "logo": "https://mubmusic.com/_next/image?url=%2Fmub-logo-icon.png&w=96&q=75",
                 "sameAs": [
                     "https://www.instagram.com/wpnews/",
                 ]
@@ -58,9 +59,9 @@ export default function Header() {
                         <a href="/">
                             <Image
                             src="/images/logo.png"
-                            alt="WpNews logo"
-                            width={167}
-                            height={70}
+                            alt="Mub Music logo"
+                            width={172}
+                            height={25}
                             />
                         </a>
                     </Grid>
