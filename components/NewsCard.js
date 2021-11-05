@@ -45,7 +45,7 @@ export default function HighlightNewsCard({ cardHeight, cardMinHeight, cardImage
     <>
       <a href={`news/${cardCategorySlug}/${cardSlug}`}>
         <CardAreaContainer>
-            <Card sx={{ maxWidth: 675 }}>
+            <Card>
                 <CardActionArea>
                     <CardMedia
                     component="img"

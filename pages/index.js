@@ -40,7 +40,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
             <Box sx={{ width: '100%', marginBottom: 3 }}>
               <HomePageHighlight>
                 <Grid container rowSpacing={1} spacing={2}>
-                    <Grid item xs={12} sm={7} md={8} >
+                    <Grid item xs={12} sm={12} md={8} >
                       <HighlightNewsCard 
                       cardHeight={600}
                       cardImage={highlightsPosts[0].fimg_url}
@@ -53,7 +53,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardSlug={highlightsPosts[0].slug}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={5} md={4}>
+                    <Grid item xs={12} sm={12} md={4}>
                       <HighlightNewsCard 
                       cardHeight={319.5} 
                       cardImage={highlightsPosts[1].fimg_url}
@@ -108,7 +108,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                   </Grid>
                   {trendingPosts.map(({fimg_url, categories, title, modified, slug}) => {
                     return (
-                      <Grid item xs={12} sm={6} md={3}>
+                      <Grid item xs={12} sm={6} md={3} key={slug}>
                         <HighlightNewsCard 
                         cardHeight={300}
                         cardImage={fimg_url}
@@ -155,7 +155,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                           <h3 className="title-border">Latest News</h3>
                         </Typography>
                       </Grid>
-                      <Grid item xs={12} sm={5} md={5}>
+                      <Grid item xs={12} sm={12} md={5}>
                         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
                           <Grid item xs={12}>
                             <NewsCard 
@@ -172,11 +172,11 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                           </Grid>
                         </Grid>
                       </Grid>
-                      <Grid item xs={12} sm={7} md={7}>
+                      <Grid item xs={12} sm={12} md={7}>
                         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
                           {firstLatestPosts.map(({fimg_url, categories, title, modified, slug}) => {
                             return (
-                              <Grid item xs={12} sm={6} md={6}>
+                              <Grid item xs={12} sm={6} md={6} key={slug}>
                                 <NewsCard 
                                 cardCategory={categories[0].category_name}
                                 cardCategorySlug={categories[0].category_slug}
@@ -221,7 +221,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
                       {secondLatestPosts.map(({fimg_url, categories, title, modified, slug}) => {
                         return (
-                          <Grid item xs={12} sm={6} md={4}>
+                          <Grid item xs={12} sm={6} md={4} key={slug}>
                             <NewsCard 
                             cardCategory={categories[0].category_name}
                             cardCategorySlug={categories[0].category_slug}
@@ -286,7 +286,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
                       {thirdLatestPosts.map(({fimg_url, categories, title, modified, slug}) => {
                         return (
-                          <Grid item xs={12} sm={6} md={3}>
+                          <Grid item xs={12} sm={6} md={3} key={slug}>
                             <NewsCard 
                             cardCategory={categories[0].category_name}
                             cardCategorySlug={categories[0].category_slug}

@@ -56,7 +56,7 @@ export default function Header() {
         <Container maxWidth="lg">
             <Box sx={{ width: '100%' }}>
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    <Grid item xs={3}>
+                    <Grid item xs={6} sm={6} md={3}>
                         <a href="/">
                             <Image
                             src="/images/logo.png"
@@ -66,7 +66,7 @@ export default function Header() {
                             />
                         </a>
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid item xs={6} sm={6} md={9}>
                         <Nav />
                     </Grid>
                 </Grid>
