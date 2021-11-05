@@ -34,6 +34,11 @@ const GlobalStyle = createGlobalStyle`
   image{
     width: 100%;
   }
+  aside{
+    @media (max-width: 885px){
+      display: none;
+    }
+  }
   .row{
     display: flex;
     flex-direction: row;
@@ -46,6 +51,11 @@ const GlobalStyle = createGlobalStyle`
   }
   .cursorPointer{
     cursor: pointer;
+  }
+  .desktop-only{
+    @media (max-width: 885px){
+      display: none;
+    }
   }
   .title-border{
     color: ${({ theme }) => theme.colors.text_4};

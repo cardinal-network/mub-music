@@ -8,7 +8,7 @@ import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import LinkRoundedIcon from '@material-ui/icons/LinkRounded';
 import Typography from '@mui/material/Typography';
 
-export const StickyAdContainer = styled.div`
+export const StickyShareContainer = styled.div`
   width: ${props => `${props.width}`};
   height: ${props => `${props.height}`};
   margin: ${props => `${props.margins}`};
@@ -17,8 +17,8 @@ export const StickyAdContainer = styled.div`
   padding: 10px 0;
   border-radius: 8px;
   text-align:center;
-  @media only screen and (max-width: 768px) {
-    position: relative;
+  @media only screen and (max-width: 885px) {
+    display: none;
   }
 `;
 
@@ -58,7 +58,7 @@ const ShareItem = styled.a`
 
 export default function StickyShare({ title, link }) {
   return (
-    <StickyAdContainer>
+    <StickyShareContainer>
       <ShareContent>
           <Typography variant="button" display="block" component="div" gutterBottom>
             <span>SHARE</span>
@@ -87,6 +87,6 @@ export default function StickyShare({ title, link }) {
               </ShareItem>
           </ShareList>
       </ShareContent>
-    </StickyAdContainer>
+    </StickyShareContainer>
   );
 }
