@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { AdContainer, StickyAdContainer } from '../../../../components/AdContainer';
 import StickyShare from '../../../../components/StickyShare';
+import FixShare from '../../../../components/FixShare';
 import formatDates from '../../../../utils/formatDates';
 import formatHtmlText from '../../../../utils/formatHtmlText';
 
@@ -55,6 +56,11 @@ const NewsBody = styled.div`
       margin: 0 auto;
       max-width: 100%;
     }
+  }
+  span{
+    line-height: 28px;
+    font-size: 15px;
+    color: ${({ theme }) => theme.colors.text_2};
   }
   ul {
     list-style-type: disc;
@@ -247,7 +253,6 @@ export default function ArticlePage({ postData, seoData }) {
               <Grid container>
                 <Grid xs={12} sm={12} md={3} p={2}>
                   <StickyShare
-                    id="ad-1-970x250"
                     width={`100%`}
                     height={`300px`}
                     margins={`35px 0 20px 0`}
@@ -295,6 +300,15 @@ export default function ArticlePage({ postData, seoData }) {
                       }}
                       />
                     </Grid>
+                    <FixShare
+                    width={`100%`}
+                    height={`300px`}
+                    margins={`35px 0 20px 0`}
+                    background={`#F5F5F7`}
+                    title={postData[0].title.rendered}
+                    id={postData[0].id}
+                    link={postData[0].link}
+                    />
                 </Grid>
                 <Grid xs={12} sm={12} md={3} p={2}>
                   <StickyAdContainer
