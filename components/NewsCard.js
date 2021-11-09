@@ -43,7 +43,7 @@ const CardDateArea = styled.span`
 export default function HighlightNewsCard({ cardHeight, cardMinHeight, cardImage, cardCategorySlug, cardCategory, cardTitle, cardDate, cardTitleTypography, cardExcerpt, cardSlug }) {
   return (
     <>
-      <a href={`news/${cardCategorySlug}/${cardSlug}`}>
+      <a href={`${process.env.NEXT_PUBLIC_ENV_DOMAIN}/news/${cardCategorySlug}/${cardSlug}`}>
         <CardAreaContainer>
             <Card>
                 <CardActionArea>
