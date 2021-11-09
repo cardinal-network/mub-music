@@ -14,7 +14,7 @@ import formatDates from '../../../../utils/formatDates';
 import formatHtmlText from '../../../../utils/formatHtmlText';
 
 const ArticlePageMain = styled.main`
-  margin: 20px 0;
+  margin: 10px 0;
 `;
 
 const TitleArea = styled.div`
@@ -39,11 +39,10 @@ const ImageTitle = styled.div`
   z-index: 9;
   position: absolute;
   bottom: 0;
-  color: #fff;
   text-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
   font-weight: 500;
   p{
-    color: #fff;
+    color: ${({ theme }) => theme.colors.text_3};
   }
 `;
 
@@ -111,6 +110,7 @@ const NewsBody = styled.div`
   }
   blockquote {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin: 0 auto !important;
   }
@@ -264,7 +264,7 @@ export default function ArticlePage({ postData, seoData }) {
       <Header />
       <ArticlePageMain>
         <Container maxWidth="lg">
-          <Box sx={{ width: '100%'}}>
+          <Box sx={{ width: '100%', padding: 0 }}>
               <Grid container>
                 <Grid xs={12} sm={12} md={9} p={2}>
                     <TitleArea>
