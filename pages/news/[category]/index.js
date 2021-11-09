@@ -41,7 +41,7 @@ export default function Home({ catData, postData }) {
                                     return (
                                         <Grid item xs={12} sm={6} md={4}>
                                         <NewsCard 
-                                        cardCategory={categories[0].category_name}
+                                        cardCategorySlug={categories[0].category_slug}
                                         cardHeight={300}
                                         cardMinHeight={165}
                                         cardImage={fimg_url}
