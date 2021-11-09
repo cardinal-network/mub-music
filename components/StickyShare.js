@@ -25,7 +25,7 @@ export const StickyShareContainer = styled.div`
 const ShareContent = styled.div`
     position: absolute;
     top: 0;
-    right: 30%;
+    right: 30px;
     span{
         color: ${({theme}) => theme.colors.text_3};
     }

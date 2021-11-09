@@ -32,6 +32,21 @@ const ImageArea = styled.div`
   position: relative;
 `;
 
+const ImageTitle = styled.div`
+  width: 90.1%;
+  background-image: linear-gradient(rgba(0,0,0,0),rgb(0,0,0));
+  padding: 30px 5% 20px 5%;
+  z-index: 9;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  text-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+  font-weight: 500;
+  p{
+    color: #fff;
+  }
+`;
+
 const NewsBody = styled.div`
   p {
     padding-top: 24px;
@@ -251,18 +266,7 @@ export default function ArticlePage({ postData, seoData }) {
         <Container maxWidth="lg">
           <Box sx={{ width: '100%'}}>
               <Grid container>
-                <Grid xs={12} sm={12} md={3} p={2}>
-                  <StickyShare
-                    width={`100%`}
-                    height={`300px`}
-                    margins={`35px 0 20px 0`}
-                    background={`#F5F5F7`}
-                    title={postData[0].title.rendered}
-                    id={postData[0].id}
-                    link={postData[0].link}
-                  />
-                </Grid>
-                <Grid xs={12} sm={12} md={6} p={2}>
+                <Grid xs={12} sm={12} md={9} p={2}>
                     <TitleArea>
                       <Grid xs={12}>
                         <Typography gutterBottom variant="button" mb={1} component="div">
@@ -287,18 +291,37 @@ export default function ArticlePage({ postData, seoData }) {
                           layout="fill"
                           objectFit="cover"
                         />
-                        <Typography gutterBottom variant={"caption"} align="center" mt={1} component="div" color="#999">
-                          <span>Lorem ipsum</span>
-                        </Typography>
+                        <ImageTitle>
+                          <Typography gutterBottom variant={"caption"} align="center" mt={1} component="div" color="#999">
+                            <span 
+                            dangerouslySetInnerHTML={{
+                              __html: postData[0]._embedded['wp:featuredmedia'][0].caption.rendered,
+                            }}
+                            />
+                          </Typography>
+                        </ImageTitle>
                       </ImageArea>
                     </Grid>
-                    <Grid xs={12}>
-                      <NewsBody
-                      className="article-content"
-                      dangerouslySetInnerHTML={{
-                        __html: postData[0].content.rendered,
-                      }}
-                      />
+                    <Grid container>
+                      <Grid xs={12} sm={12} md={2} p={2}>
+                        <StickyShare
+                          width={`100%`}
+                          height={`300px`}
+                          margins={`35px 0 20px 0`}
+                          background={`#F5F5F7`}
+                          title={postData[0].title.rendered}
+                          id={postData[0].id}
+                          link={postData[0].link}
+                        />
+                      </Grid>
+                      <Grid xs={12} sm={12} md={10}>
+                        <NewsBody
+                        className="article-content"
+                        dangerouslySetInnerHTML={{
+                          __html: postData[0].content.rendered,
+                        }}
+                        />
+                      </Grid>
                     </Grid>
                     <FixShare
                     width={`100%`}
@@ -332,7 +355,7 @@ export default function ArticlePage({ postData, seoData }) {
 }
 
 export const getStaticProps = async (context) => {
-  const reqPosts = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts?slug=${context.params.slug}`);
+  const reqPosts = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts?slug=${context.params.slug}&_embed`);
   const postData = await reqPosts.json();
   const seoData = {
     title: formatHtmlText(postData[0].title.rendered),
