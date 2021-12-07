@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Head from "next/head";
+import formatDates from '../utils/formatDates';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Container from '@mui/material/Container';
@@ -9,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import HighlightNewsCard from '../components/HighlightNewsCard';
 import NewsCard from '../components/NewsCard';
 import { AdContainer } from '../components/AdContainer';
-import formatDates from '../utils/formatDates';
+import HomePageDataTypes from '../@types/homePage';
 
 const HomePageHighlight = styled.div`
   padding: 0;
@@ -23,7 +24,7 @@ const HomePageLatest = styled.div`
   padding: 0 0 40px 0;
 `
 
-export default function Home({ highlightsPosts, trendingPosts, firstLatestHighlightPosts, firstLatestPosts, secondLatestPosts, thirdLatestPosts }) {
+export default function Home({ highlightsPosts, trendingPosts, firstLatestHighlightPosts, firstLatestPosts, secondLatestPosts, thirdLatestPosts }: HomePageDataTypes) {
   return (
     <>
       <Head>
@@ -50,12 +51,13 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardTitleTypography={"h3"}
                       cardDate={formatDates(highlightsPosts[0].modified)}
                       cardExcerpt={highlightsPosts[0].excerpt.rendered}
-                      cardSlug={highlightsPosts[0].slug}
+                      cardSlug={highlightsPosts[0].slug} 
+                      width={''}                      
                       />
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <HighlightNewsCard 
-                      cardHeight={319.5} 
+                      cardHeight={319.5}
                       cardImage={highlightsPosts[1].fimg_url}
                       cardCategory={highlightsPosts[1].categories[0].category_name}
                       cardCategorySlug={highlightsPosts[1].categories[0].category_slug}
@@ -63,6 +65,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardTitleTypography={"h5"}
                       cardDate={formatDates(highlightsPosts[1].modified)}
                       cardSlug={highlightsPosts[1].slug}
+                      width={''} 
+                      cardExcerpt={''}                      
                       />
                       <HighlightNewsCard 
                       cardHeight={260}
@@ -73,6 +77,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardTitleTypography={"h5"}
                       cardDate={formatDates(highlightsPosts[2].modified)}
                       cardSlug={highlightsPosts[2].slug}
+                      width={''}
+                      cardExcerpt={''} 
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -118,6 +124,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                         cardTitleTypography={"h6"}
                         cardDate={formatDates(modified)}
                         cardSlug={slug}
+                        width={''}
+                        cardExcerpt={''} 
                         />
                       </Grid>
                     )
@@ -168,6 +176,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardTitleTypography={"h5"}
                             cardDate={formatDates(firstLatestHighlightPosts[0].modified)}
                             cardSlug={firstLatestHighlightPosts[0].slug}
+                            width={''}
+                            cardExcerpt={''} 
                             />
                           </Grid>
                         </Grid>
@@ -187,6 +197,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                                 cardTitleTypography={"h6"}
                                 cardDate={formatDates(modified)}
                                 cardSlug={slug}
+                                width={''}
+                                cardExcerpt={''} 
                                 />
                               </Grid>
                             )
@@ -232,6 +244,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardTitleTypography={"h6"}
                             cardDate={formatDates(modified)}
                             cardSlug={slug}
+                            width={''}
+                            cardExcerpt={''} 
                             />
                           </Grid>
                         )
@@ -297,6 +311,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardTitleTypography={"h6"}
                             cardDate={formatDates(modified)}
                             cardSlug={slug}
+                            width={''}
+                            cardExcerpt={''} 
                             />
                           </Grid>
                         )

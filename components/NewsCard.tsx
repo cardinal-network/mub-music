@@ -40,34 +40,48 @@ const CardDateArea = styled.span`
   color: ${({ theme }) => theme.colors.text_3};
 `;
 
-export default function HighlightNewsCard({ cardHeight, cardMinHeight, cardImage, cardCategorySlug, cardCategory, cardTitle, cardDate, cardTitleTypography, cardExcerpt, cardSlug }) {
+type NewsCardProps = {
+  width: string
+  cardHeight: number
+  cardMinHeight: number
+  cardImage: string
+  cardCategorySlug: string
+  cardCategory: string
+  cardTitle: string
+  cardTitleTypography: string
+  cardDate: string
+  cardExcerpt: string
+  cardSlug: string
+}
+
+export default function NewsCard(props: NewsCardProps) {
   return (
     <>
-      <a href={`${process.env.NEXT_PUBLIC_ENV_DOMAIN}/news/${cardCategorySlug}/${cardSlug}`}>
+      <a href={`${process.env.NEXT_PUBLIC_ENV_DOMAIN}/news/${props.cardCategorySlug}/${props.cardSlug}`}>
         <CardAreaContainer>
             <Card>
                 <CardActionArea>
                     <CardMedia
                     component="img"
-                    height={cardHeight / 2.5}
-                    image={cardImage}
-                    alt={cardTitle}
+                    height={props.cardHeight / 2.5}
+                    image={props.cardImage}
+                    alt={props.cardTitle}
                     />
-                    <CardContent sx={{ minHeight: cardMinHeight }}>
+                    <CardContent sx={{ minHeight: props.cardMinHeight }}>
                       <Typography variant="body1">
-                          <CardCategoryArea>{cardCategory}</CardCategoryArea>
+                          <CardCategoryArea>{props.cardCategory}</CardCategoryArea>
                       </Typography>
                       <Typography variant="body1" mb={1}>
-                          <CardDateArea>Published at {cardDate}</CardDateArea>
+                          <CardDateArea>Published at {props.cardDate}</CardDateArea>
                       </Typography>
-                      <Typography gutterBottom variant={cardTitleTypography} component="div">
+                      <Typography gutterBottom variant={props.cardTitleTypography} component="div">
                           <h4 dangerouslySetInnerHTML={{
-                          __html: cardTitle,
+                          __html: props.cardTitle,
                           }} />
                       </Typography>
                       <Typography variant="body1" color="text.secondary">
                           <p dangerouslySetInnerHTML={{
-                          __html: cardExcerpt,
+                          __html: props.cardExcerpt,
                           }} />
                       </Typography>
                     </CardContent>

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from "next/head";
+import PostDataTypes from '../../../../@types/post';
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
 import Image from 'next/image';
@@ -12,6 +14,7 @@ import StickyShare from '../../../../components/StickyShare';
 import FixShare from '../../../../components/FixShare';
 import formatDates from '../../../../utils/formatDates';
 import formatHtmlText from '../../../../utils/formatHtmlText';
+
 
 const ArticlePageMain = styled.main`
   margin: 10px 0;
@@ -191,7 +194,7 @@ const NewsBody = styled.div`
   }
 `;
 
-export default function ArticlePage({ postData, seoData }) {
+export default function ArticlePage({ postData, seoData }: PostDataTypes) {
   return (
     <>
       <Head>
@@ -354,7 +357,7 @@ export default function ArticlePage({ postData, seoData }) {
   );
 }
 
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const reqPosts = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts?slug=${context.params.slug}&_embed`);
   const postData = await reqPosts.json();
   const seoData = {
@@ -371,7 +374,7 @@ export const getStaticProps = async (context) => {
   };
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const reqStaticPosts = await fetch("https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts/");
   const staticPostsJson = await reqStaticPosts.json();
   const paths = staticPostsJson.map((post) => {

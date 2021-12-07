@@ -63,34 +63,47 @@ const CardDateArea = styled.span`
   }
 `;
 
-export default function HighlightNewsCard({ cardHeight, cardImage, cardCategorySlug, cardCategory, cardTitle, cardTitleTypography, cardDate, cardExcerpt, cardSlug }) {
+type HighlightNewsCardProps = {
+  width: string
+  cardHeight: number
+  cardImage: string
+  cardCategorySlug: string
+  cardCategory: string
+  cardTitle: string
+  cardTitleTypography: string
+  cardDate: string
+  cardExcerpt: string
+  cardSlug: string
+}
+
+export default function HighlightNewsCard(props: HighlightNewsCardProps) {
   return (
     <>
-      <a href={`news/${cardCategorySlug}/${cardSlug}`}>
+      <a href={`news/${props.cardCategorySlug}/${props.cardSlug}`}>
         <CardAreaContainer>
-            <Card sx={{ maxWidth: 784, height: cardHeight }}>
+            <Card sx={{ maxWidth: 784, height: props.cardHeight }}>
                 <CardActionArea>
                     <CardMedia
                     component="img"
                     height="100%"
-                    image={cardImage}
-                    alt={cardTitle}
+                    image={props.cardImage}
+                    alt={props.cardTitle}
                     />
                     <CardContent>
                       <Typography gutterBottom component="div" mb={1}>
-                          <CardCategoryArea>{cardCategory}</CardCategoryArea>
+                          <CardCategoryArea>{props.cardCategory}</CardCategoryArea>
                       </Typography>
-                      <Typography gutterBottom variant={cardTitleTypography} mb={1} component="div">
+                      <Typography gutterBottom variant={props.cardTitleTypography} mb={1} component="div">
                           <h2 dangerouslySetInnerHTML={{
-                          __html: cardTitle,
+                          __html: props.cardTitle,
                           }} />
                       </Typography>
                       <Typography gutterBottom component="div">
-                          <CardDateArea><AccessTimeIcon/> Published at {cardDate}</CardDateArea>
+                          <CardDateArea><AccessTimeIcon/> Published at {props.cardDate}</CardDateArea>
                       </Typography>
                       <Typography className={"cardExcerpt"} variant="body1" mt={1} color="text.secondary">
                           <p dangerouslySetInnerHTML={{
-                          __html: cardExcerpt,
+                          __html: props.cardExcerpt,
                           }} />
                       </Typography>
                     </CardContent>
