@@ -20,6 +20,7 @@ const CardAreaContainer = styled.div`
     }
     h4{
       color: ${({ theme }) => theme.colors.text_4};
+      font-size: 20px;
       font-weight: 500;
     }
   }
@@ -74,7 +75,7 @@ export default function NewsCard(props: NewsCardProps) {
                       <Typography variant="body1" mb={1}>
                           <CardDateArea>Published at {props.cardDate}</CardDateArea>
                       </Typography>
-                      <Typography gutterBottom variant={props.cardTitleTypography} component="div">
+                      <Typography gutterBottom component="div">
                           <h4 dangerouslySetInnerHTML={{
                           __html: props.cardTitle,
                           }} />

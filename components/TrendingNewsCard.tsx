@@ -10,8 +10,8 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 const CardAreaContainer = styled.div`
   width: 100%;
   margin: 20px 0 0 0;
-  h2{
-    font-size: 30px;
+  h3{
+    font-size: 22px;
     font-weight: bold;
   }
   button{
@@ -38,10 +38,7 @@ const CardAreaContainer = styled.div`
       font-weight: 500;
     }
   }
-  @media (max-width: 884px){
-    h2{
-      font-size: 28px;
-    }
+  @media (max-width: 768px){
     .cardExcerpt{
       display: none;
     }
@@ -67,7 +64,7 @@ const CardDateArea = styled.span`
   }
 `;
 
-type HighlightNewsCardProps = {
+type TrendingNewsCardProps = {
   cardHeight: number
   cardImage: string
   cardCategorySlug: string
@@ -78,7 +75,7 @@ type HighlightNewsCardProps = {
   cardSlug: string
 }
 
-export default function HighlightNewsCard(props: HighlightNewsCardProps) {
+export default function HighlightNewsCard(props: TrendingNewsCardProps) {
   return (
     <>
       <a href={`news/${props.cardCategorySlug}/${props.cardSlug}`}>
@@ -96,7 +93,7 @@ export default function HighlightNewsCard(props: HighlightNewsCardProps) {
                           <CardCategoryArea>{props.cardCategory}</CardCategoryArea>
                       </Typography>
                       <Typography gutterBottom mb={1} component="div">
-                          <h2 dangerouslySetInnerHTML={{
+                          <h3 dangerouslySetInnerHTML={{
                           __html: props.cardTitle,
                           }} />
                       </Typography>
