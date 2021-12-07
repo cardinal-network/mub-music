@@ -14,7 +14,7 @@ const HomePageLatest = styled.div`
   padding: 40px 0;
 `
 
-export default function Home({ catData, postData }) {
+export default function NewsCategory({ catData, postData }) {
   return (
     <>
         <Head>
