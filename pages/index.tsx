@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Head from "next/head";
+import formatDates from '../utils/formatDates';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Container from '@mui/material/Container';
@@ -7,9 +8,10 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import HighlightNewsCard from '../components/HighlightNewsCard';
+import TrendingNewsCard from '../components/TrendingNewsCard';
 import NewsCard from '../components/NewsCard';
 import { AdContainer } from '../components/AdContainer';
-import formatDates from '../utils/formatDates';
+import HomePageDataTypes from '../@types/homePage';
 
 const HomePageHighlight = styled.div`
   padding: 0;
@@ -23,7 +25,7 @@ const HomePageLatest = styled.div`
   padding: 0 0 40px 0;
 `
 
-export default function Home({ highlightsPosts, trendingPosts, firstLatestHighlightPosts, firstLatestPosts, secondLatestPosts, thirdLatestPosts }) {
+export default function Home({ highlightsPosts, trendingPosts, firstLatestHighlightPosts, firstLatestPosts, secondLatestPosts, thirdLatestPosts }: HomePageDataTypes) {
   return (
     <>
       <Head>
@@ -47,22 +49,21 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardCategory={highlightsPosts[0].categories[0].category_name}
                       cardCategorySlug={highlightsPosts[0].categories[0].category_slug}
                       cardTitle={highlightsPosts[0].title.rendered}
-                      cardTitleTypography={"h3"}
                       cardDate={formatDates(highlightsPosts[0].modified)}
                       cardExcerpt={highlightsPosts[0].excerpt.rendered}
-                      cardSlug={highlightsPosts[0].slug}
+                      cardSlug={highlightsPosts[0].slug}                 
                       />
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <HighlightNewsCard 
-                      cardHeight={319.5} 
+                      cardHeight={319.5}
                       cardImage={highlightsPosts[1].fimg_url}
                       cardCategory={highlightsPosts[1].categories[0].category_name}
                       cardCategorySlug={highlightsPosts[1].categories[0].category_slug}
                       cardTitle={highlightsPosts[1].title.rendered}
-                      cardTitleTypography={"h5"}
                       cardDate={formatDates(highlightsPosts[1].modified)}
                       cardSlug={highlightsPosts[1].slug}
+                      cardExcerpt={''}                      
                       />
                       <HighlightNewsCard 
                       cardHeight={260}
@@ -70,9 +71,9 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardCategory={highlightsPosts[2].categories[0].category_name}
                       cardCategorySlug={highlightsPosts[2].categories[0].category_slug}
                       cardTitle={highlightsPosts[2].title.rendered}
-                      cardTitleTypography={"h5"}
                       cardDate={formatDates(highlightsPosts[2].modified)}
                       cardSlug={highlightsPosts[2].slug}
+                      cardExcerpt={''} 
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -109,15 +110,15 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                   {trendingPosts.map(({fimg_url, categories, title, modified, slug}) => {
                     return (
                       <Grid item xs={12} sm={6} md={3} key={slug}>
-                        <HighlightNewsCard 
+                        <TrendingNewsCard
                         cardHeight={300}
                         cardImage={fimg_url}
                         cardCategory={categories[0].category_name}
                         cardCategorySlug={categories[0].category_slug}
                         cardTitle={title.rendered}
-                        cardTitleTypography={"h6"}
                         cardDate={formatDates(modified)}
                         cardSlug={slug}
+                        cardExcerpt={''} 
                         />
                       </Grid>
                     )
@@ -168,6 +169,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardTitleTypography={"h5"}
                             cardDate={formatDates(firstLatestHighlightPosts[0].modified)}
                             cardSlug={firstLatestHighlightPosts[0].slug}
+                            width={''}
+                            cardExcerpt={''} 
                             />
                           </Grid>
                         </Grid>
@@ -187,6 +190,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                                 cardTitleTypography={"h6"}
                                 cardDate={formatDates(modified)}
                                 cardSlug={slug}
+                                width={''}
+                                cardExcerpt={''} 
                                 />
                               </Grid>
                             )
@@ -232,6 +237,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardTitleTypography={"h6"}
                             cardDate={formatDates(modified)}
                             cardSlug={slug}
+                            width={''}
+                            cardExcerpt={''} 
                             />
                           </Grid>
                         )
@@ -297,6 +304,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardTitleTypography={"h6"}
                             cardDate={formatDates(modified)}
                             cardSlug={slug}
+                            width={''}
+                            cardExcerpt={''} 
                             />
                           </Grid>
                         )

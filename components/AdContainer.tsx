@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
+type AdContainerProps = {
+  width: string
+  height: string
+  margins: string
+}
+
 export const AdContainer = styled.div`
   background: ${({ theme }) => theme.colors.secondary};
-  width: ${props => `${props.width}`};
-  height: ${props => `${props.height}`};
-  margin: ${props => `${props.margins}`};
+  width: ${(props: AdContainerProps) => `${props.width}`};
+  height: ${(props: AdContainerProps) => `${props.height}`};
+  margin: ${(props: AdContainerProps) => `${props.margins}`};
   padding: 10px 0;
   border-radius: 8px;
   text-align:center;
@@ -17,9 +23,9 @@ export const AdContainer = styled.div`
 
 export const StickyAdContainer = styled.div`
   background: ${({ theme }) => theme.colors.secondary};
-  width: ${props => `${props.width}`};
-  height: ${props => `${props.height}`};
-  margin: ${props => `${props.margins}`};
+  width: ${(props: AdContainerProps) => `${props.width}`};
+  height: ${(props: AdContainerProps) => `${props.height}`};
+  margin: ${(props: AdContainerProps) => `${props.margins}`};
   position: sticky;
   top: 1em;
   padding: 10px 0;

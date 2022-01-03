@@ -90,11 +90,14 @@ const LogoutBlockItem = styled.li`
     margin: 10px 0;
 `;
 
+type MobileMenuProps = {
+    display: string
+}
 
-export default function MobileMenu({ display }) {
+export default function MobileMenu(props: MobileMenuProps) {
     return (
         <>
-            <MenuContainer display={display}>
+            <MenuContainer display={props.display}>
                 <ListContainer>
                     <MenuBlock>
                         <MenuTitle>News Categories</MenuTitle>

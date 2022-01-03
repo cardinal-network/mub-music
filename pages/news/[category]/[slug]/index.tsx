@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from "next/head";
+import PostDataTypes from '../../../../@types/post';
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
 import Image from 'next/image';
@@ -12,6 +14,7 @@ import StickyShare from '../../../../components/StickyShare';
 import FixShare from '../../../../components/FixShare';
 import formatDates from '../../../../utils/formatDates';
 import formatHtmlText from '../../../../utils/formatHtmlText';
+
 
 const ArticlePageMain = styled.main`
   margin: 10px 0;
@@ -191,7 +194,7 @@ const NewsBody = styled.div`
   }
 `;
 
-export default function ArticlePage({ postData, seoData }) {
+export default function ArticlePage({ postData, seoData }: PostDataTypes) {
   return (
     <>
       <Head>
@@ -272,13 +275,13 @@ export default function ArticlePage({ postData, seoData }) {
                         <Typography gutterBottom variant="button" mb={1} component="div">
                           <span>{postData[0].categories[0].category_name}</span>
                         </Typography>
-                        <Typography gutterBottom variant={"h3"} mb={1} component="div">
+                        <Typography variant="h3" gutterBottom mb={1} component="div">
                           <h1>{postData[0].title.rendered.replace(new RegExp("#[^>]*;|amp;", "g"), "")}</h1>
                         </Typography>
-                        <Typography gutterBottom variant={"body1"} mb={1} component="div" dangerouslySetInnerHTML={{
+                        <Typography gutterBottom mb={1} component="div" dangerouslySetInnerHTML={{
                           __html: postData[0].excerpt.rendered,
                         }} />
-                        <Typography gutterBottom variant={"body2"} mb={2} component="div">
+                        <Typography gutterBottom mb={2} component="div">
                           <span>By {postData[0].author_meta[0].display_name} at {formatDates(postData[0].modified)}</span>
                         </Typography>
                       </Grid>
@@ -292,7 +295,7 @@ export default function ArticlePage({ postData, seoData }) {
                           objectFit="cover"
                         />
                         <ImageTitle>
-                          <Typography gutterBottom variant={"caption"} align="center" mt={1} component="div" color="#999">
+                          <Typography gutterBottom align="center" mt={1} component="div" color="#999">
                             <span 
                             dangerouslySetInnerHTML={{
                               __html: postData[0]._embedded['wp:featuredmedia'][0].caption.rendered,
@@ -354,7 +357,7 @@ export default function ArticlePage({ postData, seoData }) {
   );
 }
 
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const reqPosts = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts?slug=${context.params.slug}&_embed`);
   const postData = await reqPosts.json();
   const seoData = {
@@ -371,7 +374,7 @@ export const getStaticProps = async (context) => {
   };
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const reqStaticPosts = await fetch("https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts/");
   const staticPostsJson = await reqStaticPosts.json();
   const paths = staticPostsJson.map((post) => {
