@@ -39,7 +39,7 @@ export default function CategoryPage({ catData, postData }: CatDataTypes) {
                             </Grid>
                             <Grid item xs={12} sm={12} md={9}>
                                 <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
-                                    {postData.map(({fimg_url, categories, title, modified, slug}) => {
+                                    {postData.map(({fimg_url, categories, title, date, slug}) => {
                                       return (
                                         <Grid item xs={12} sm={6} md={4} key={slug}>
                                           <NewsCard 
@@ -52,7 +52,7 @@ export default function CategoryPage({ catData, postData }: CatDataTypes) {
                                               ""
                                             )}
                                             cardTitleTypography={"h6"}
-                                            cardDate={formatDates(modified)}
+                                            cardDate={formatDates(date)}
                                             cardSlug={slug} 
                                             width={''} 
                                             cardCategory={''} 
@@ -92,7 +92,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const catJson = await reqCat.json();
   const catData = catJson[0];
 
-  const reqPosts = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts?categories=${catData.id}&_fields=id,modified,link,title,content,excerpt,categories,slug,featured_media,fimg_url&per_page=20`);
+  const reqPosts = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts?categories=${catData.id}&_fields=id,date,link,title,content,excerpt,categories,slug,featured_media,fimg_url&per_page=20`);
   const postData = await reqPosts.json();
 
   return {

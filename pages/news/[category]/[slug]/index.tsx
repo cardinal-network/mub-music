@@ -282,7 +282,7 @@ export default function ArticlePage({ postData, seoData }: PostDataTypes) {
                           __html: postData[0].excerpt.rendered,
                         }} />
                         <Typography gutterBottom mb={2} component="div">
-                          <span>By {postData[0].author_meta[0].display_name} at {formatDates(postData[0].modified)}</span>
+                          <span>By {postData[0].author_meta[0].display_name} at {formatDates(postData[0].date)}</span>
                         </Typography>
                       </Grid>
                     </TitleArea>
