@@ -63,10 +63,10 @@ export default function ProductCategory({ prodCatData, prodData, prodSubCatData,
   return (
     <>
       <Head>
-      <title>{ prodCatData.title.rendered } | Mub Music - Music World News</title>
-      <meta name="description" content={`Buy ${prodCatData.title.rendered} | Mub Music - Music World News`} />
-        <meta property="og:title" content="Mub Music - Music World News" key="title" />
-        <meta property="og:description" content="Mub Music - Music World News" />
+      <title>{ prodCatData.title.rendered } | Mub Music - Musical Products, Reviews, News and much more</title>
+      <meta name="description" content={`Buy ${prodCatData.title.rendered} | Mub Music - Musical Products, Reviews, News and much more`} />
+        <meta property="og:title" content="Mub Music - Musical Products, Reviews, News and much more" key="title" />
+        <meta property="og:description" content="Mub Music - Musical Products, Reviews, News and much more" />
         <meta name="twitter:text:title" content="Index Page" />
         <link rel="preload" href="" as="image" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{
@@ -127,7 +127,7 @@ export default function ProductCategory({ prodCatData, prodData, prodSubCatData,
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
-                      <Typography variant="h5">Subcategories</Typography>
+                      <Typography variant="h5">{prodCatData.ACF.category_id.post_title} Subcategories</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                       <FormControl component="fieldset">
@@ -257,15 +257,20 @@ export default function ProductCategory({ prodCatData, prodData, prodSubCatData,
 }
 
 export const getStaticProps = async (context) => {
-  const resProdCat = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/product_category?slug=${context.params.product_category}`);
-  const prodCatJson = await resProdCat.json();
+  const resSubCat = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/product_sub_category?slug=${context.params.product_sub_category}`);
+  const subCatJson = await resSubCat.json();
   
-  const resProd = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/products?category_id=${prodCatJson[0].id}`);
-  const resProdSubCat = await fetch(`https://mubdmn-dev.crdps.xyz/sbc-lc/?ct=${prodCatJson[0].id}`);
-  const resProdBrand = await fetch(`https://mubdmn-dev.crdps.xyz/brd-lc/?ct=${prodCatJson[0].id}`);
-  const resProdPriceAverage = await fetch(`https://mubdmn-dev.crdps.xyz/prvg-lc/?ct=${prodCatJson[0].id}`);
+  const resProd = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/products?subcategory_id=${subCatJson[0].id}`);
+  const resProdSubCat = await fetch(`https://mubdmn-dev.crdps.xyz/sbc-lc/?ct=${subCatJson[0].ACF.category_id.ID}`);
+  const resProdBrand = await fetch(`https://mubdmn-dev.crdps.xyz/brd-lc/?ct=${subCatJson[0].id}`);
+  const resProdPriceAverage = await fetch(`https://mubdmn-dev.crdps.xyz/prvg-lc/?ct=${subCatJson[0].id}`);
+
+  //https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/reviews?product_id=306
 
   const prodJson = await resProd.json();
+
+  
+
   const prodSubCatJson = await resProdSubCat.json();
   const prodBrandJson = await resProdBrand.json();
   const prodPriceAverageJson = await resProdPriceAverage.json();
@@ -273,7 +278,7 @@ export const getStaticProps = async (context) => {
   return {
     revalidate: 500,
     props: {
-      prodCatData: prodCatJson[0],
+      prodCatData: subCatJson[0],
       prodData: prodJson,
       prodSubCatData: prodSubCatJson,
       prodBrandData: prodBrandJson,
@@ -283,12 +288,12 @@ export const getStaticProps = async (context) => {
 };
 
 export async function getStaticPaths() {
-    const reqCat = await fetch("https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/product_category");
+    const reqCat = await fetch("https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/product_sub_category");
     const catJson = await reqCat.json();
-    const paths = catJson.map((product_category) => {
+    const paths = catJson.map((product_sub_category) => {
       return {
         params: {
-            product_category: product_category.slug
+            product_sub_category: product_sub_category.slug
         },
       };
     });

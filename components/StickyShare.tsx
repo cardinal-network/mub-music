@@ -56,7 +56,17 @@ const ShareItem = styled.a`
     }
 `;
 
-export default function StickyShare({ title, link }) {
+type StickyShareProps = {
+    width: string
+    height: string
+    margins: string
+    background: string
+    title: string
+    id: number
+    link: string
+}
+
+export default function StickyShare(props: StickyShareProps) {
   return (
     <StickyShareContainer>
       <ShareContent>
@@ -64,25 +74,25 @@ export default function StickyShare({ title, link }) {
             <span>SHARE</span>
           </Typography>
           <ShareList>
-              <ShareItem onClick={() => handleClick('WhatsApp')} title="Compartilhar pelo WhatsApp" target="_blank" href={`https://api.whatsapp.com/send?text=${title} ${link}?utm_source=whatsapp&utm_medium=social&utm_campaign=barra-compartilhamento via Exame`}>
+              <ShareItem title="Compartilhar pelo WhatsApp" target="_blank" href={`https://api.whatsapp.com/send?text=${props.title} ${props.link}?utm_source=whatsapp&utm_medium=social`}>
                   <WhatsAppIcon/>
               </ShareItem>
-              <ShareItem onClick={() => handleClick('LinkedIn')} title="Compartilhar pelo LinkedIn" target="_blank" href={`https://www.linkedin.com/sharing/share-offsite/?url=${link}`}>
+              <ShareItem title="Compartilhar pelo LinkedIn" target="_blank" href={`https://www.linkedin.com/sharing/share-offsite/?url=${props.link}`}>
                   <LinkedInIcon/>
               </ShareItem>
-              <ShareItem onClick={() => handleClick('Telegram')} title="Compartilhar pelo Telegram" target="_blank" href={`https://t.me/share/url?url=${link}&text=${title}`}>
+              <ShareItem title="Compartilhar pelo Telegram" target="_blank" href={`https://t.me/share/url?url=${props.link}&text=${props.title}`}>
                   <TelegramIcon/>
               </ShareItem>
-              <ShareItem onClick={() => handleClick('Twitter')} title="Compartilhar pelo Twitter" target="_blank" href={`https://twitter.com/intent/tweet?url=${link}&text=${title}&via=exame`}>
+              <ShareItem title="Compartilhar pelo Twitter" target="_blank" href={`https://twitter.com/intent/tweet?url=${props.link}&text=${props.title}`}>
                   <TwitterIcon/>
               </ShareItem>
-              <ShareItem onClick={() => handleClick('Facebook')} title="Compartilhar pelo Facebook" target="_blank" href={`https://facebook.com/sharer/sharer.php?u=${link}`}>
+              <ShareItem title="Compartilhar pelo Facebook" target="_blank" href={`https://facebook.com/sharer/sharer.php?u=${props.link}`}>
                   <FacebookIcon/>
               </ShareItem>
-              <ShareItem onClick={() => handleClick('E-mail')} title="Compartilhar por E-mail" target="_blank" href={`mailto:?subject=${title}&body=${title} ${link}`}>
+              <ShareItem title="Compartilhar por E-mail" target="_blank" href={`mailto:?subject=${props.title}&body=${props.title} ${props.link}`}>
                   <MailOutlineRoundedIcon/>
               </ShareItem>
-              <ShareItem onClick={() => handleClick('Copiar link')} title="Copiar link" onClick={(evt) => { evt.preventDefault(); navigator.clipboard.writeText(window.location.href) }}>
+              <ShareItem title="Copiar link" onClick={(evt) => { evt.preventDefault(); navigator.clipboard.writeText(window.location.href) }}>
                   <LinkRoundedIcon/>
               </ShareItem>
           </ShareList>

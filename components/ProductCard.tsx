@@ -86,7 +86,7 @@ export default function ProductCard({ cardImage, cardCategorySlug, cardCategory,
                     alt={cardTitle}
                     />
                     <CardRatingArea>
-                      <Rating name="read-only" value={3} readOnly />
+                      <Rating name="read-only" value={3.6} precision={0.5} readOnly />
                     </CardRatingArea>
                     <CardAvatarArea>
                       <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{ width: 45, height: 45 }} />

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from "next/head";
+import CatDataTypes from '../../../@types/categoriesPage';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import NewsCard from '../../../components/NewsCard';
@@ -14,11 +16,11 @@ const HomePageLatest = styled.div`
   padding: 40px 0;
 `
 
-export default function NewsCategory({ catData, postData }) {
+export default function CategoryPage({ catData, postData }: CatDataTypes) {
   return (
     <>
         <Head>
-        <title>{catData.name} | Mub Music - Music World News</title>
+        <title>{catData.name} | Mub Music - Musical Products, Reviews, News and much more</title>
         <meta name="description" content={catData.description} />
         <meta property="og:title" content={catData.name} key="title" />
         <meta property="og:description" content={catData.description} />
@@ -38,21 +40,24 @@ export default function NewsCategory({ catData, postData }) {
                             <Grid item xs={12} sm={12} md={9}>
                                 <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
                                     {postData.map(({fimg_url, categories, title, modified, slug}) => {
-                                    return (
-                                        <Grid item xs={12} sm={6} md={4}>
-                                        <NewsCard 
-                                        cardCategorySlug={categories[0].category_slug}
-                                        cardHeight={300}
-                                        cardMinHeight={165}
-                                        cardImage={fimg_url}
-                                        cardTitle={title.rendered.replace(
-                                            new RegExp("#[^>]*;|amp;", "g"),
-                                            ""
-                                        )}
-                                        cardTitleTypography={"h6"}
-                                        cardDate={formatDates(modified)}
-                                        cardSlug={slug}
-                                        />
+                                      return (
+                                        <Grid item xs={12} sm={6} md={4} key={slug}>
+                                          <NewsCard 
+                                            cardCategorySlug={categories.map(({category_slug}) => {return (category_slug)})}
+                                            cardHeight={300}
+                                            cardMinHeight={165}
+                                            cardImage={fimg_url}
+                                            cardTitle={title.rendered.replace(
+                                              new RegExp("#[^>]*;|amp;", "g"),
+                                              ""
+                                            )}
+                                            cardTitleTypography={"h6"}
+                                            cardDate={formatDates(modified)}
+                                            cardSlug={slug} 
+                                            width={''} 
+                                            cardCategory={''} 
+                                            cardExcerpt={''}                                        
+                                          />
                                         </Grid>
                                     )
                                     })}
@@ -82,7 +87,7 @@ export default function NewsCategory({ catData, postData }) {
   );
 }
 
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const reqCat = await fetch(`https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/categories?slug=${context.params.category}`);
   const catJson = await reqCat.json();
   const catData = catJson[0];
@@ -99,7 +104,7 @@ export const getStaticProps = async (context) => {
   };
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
     const reqCat = await fetch("https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/categories");
     const catJson = await reqCat.json();
     const paths = catJson.map((category) => {

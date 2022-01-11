@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Head from "next/head";
+import formatDates from '../utils/formatDates';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Container from '@mui/material/Container';
@@ -7,9 +8,10 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import HighlightNewsCard from '../components/HighlightNewsCard';
+import TrendingNewsCard from '../components/TrendingNewsCard';
 import NewsCard from '../components/NewsCard';
 import { AdContainer } from '../components/AdContainer';
-import formatDates from '../utils/formatDates';
+import HomePageDataTypes from '../@types/homePage';
 
 const HomePageHighlight = styled.div`
   padding: 0;
@@ -23,14 +25,14 @@ const HomePageLatest = styled.div`
   padding: 0 0 40px 0;
 `
 
-export default function Home({ highlightsPosts, trendingPosts, firstLatestHighlightPosts, firstLatestPosts, secondLatestPosts, thirdLatestPosts }) {
+export default function Home({ highlightsPosts, trendingPosts, firstLatestHighlightPosts, firstLatestPosts, secondLatestPosts, thirdLatestPosts }: HomePageDataTypes) {
   return (
     <>
       <Head>
-      <title>Mub Music - Music World News</title>
-      <meta name="description" content="Mub Music - Music World News" />
-        <meta property="og:title" content="Mub Music - Music World News" key="title" />
-        <meta property="og:description" content="Mub Music - Music World News" />
+      <title>Mub Music - Musical Products, Reviews, News and much more</title>
+      <meta name="description" content="Mub Music - Musical Products, Reviews, News and much more" />
+        <meta property="og:title" content="Mub Music - Musical Products, Reviews, News and much more" key="title" />
+        <meta property="og:description" content="Mub Music - Musical Products, Reviews, News and much more" />
         <meta name="twitter:text:title" content="Index Page" />
         <link rel="preload" href={highlightsPosts[0].fimg_url} as="image" />
       </Head>
@@ -47,22 +49,21 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardCategory={highlightsPosts[0].categories[0].category_name}
                       cardCategorySlug={highlightsPosts[0].categories[0].category_slug}
                       cardTitle={highlightsPosts[0].title.rendered}
-                      cardTitleTypography={"h3"}
                       cardDate={formatDates(highlightsPosts[0].modified)}
                       cardExcerpt={highlightsPosts[0].excerpt.rendered}
-                      cardSlug={highlightsPosts[0].slug}
+                      cardSlug={highlightsPosts[0].slug}                 
                       />
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <HighlightNewsCard 
-                      cardHeight={319.5} 
+                      cardHeight={319.5}
                       cardImage={highlightsPosts[1].fimg_url}
                       cardCategory={highlightsPosts[1].categories[0].category_name}
                       cardCategorySlug={highlightsPosts[1].categories[0].category_slug}
                       cardTitle={highlightsPosts[1].title.rendered}
-                      cardTitleTypography={"h5"}
                       cardDate={formatDates(highlightsPosts[1].modified)}
                       cardSlug={highlightsPosts[1].slug}
+                      cardExcerpt={''}                      
                       />
                       <HighlightNewsCard 
                       cardHeight={260}
@@ -70,9 +71,9 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardCategory={highlightsPosts[2].categories[0].category_name}
                       cardCategorySlug={highlightsPosts[2].categories[0].category_slug}
                       cardTitle={highlightsPosts[2].title.rendered}
-                      cardTitleTypography={"h5"}
                       cardDate={formatDates(highlightsPosts[2].modified)}
                       cardSlug={highlightsPosts[2].slug}
+                      cardExcerpt={''} 
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -90,7 +91,6 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                           data-ad-slot="4578178371"
                           data-ad-format="auto"
                           data-full-width-responsive="true"></ins>
-                          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                           `
                         }}
                       />
@@ -109,15 +109,15 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                   {trendingPosts.map(({fimg_url, categories, title, modified, slug}) => {
                     return (
                       <Grid item xs={12} sm={6} md={3} key={slug}>
-                        <HighlightNewsCard 
+                        <TrendingNewsCard
                         cardHeight={300}
                         cardImage={fimg_url}
                         cardCategory={categories[0].category_name}
                         cardCategorySlug={categories[0].category_slug}
                         cardTitle={title.rendered}
-                        cardTitleTypography={"h6"}
                         cardDate={formatDates(modified)}
                         cardSlug={slug}
+                        cardExcerpt={''} 
                         />
                       </Grid>
                     )
@@ -138,7 +138,6 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       data-ad-slot="8041946519"
                       data-ad-format="auto"
                       data-full-width-responsive="true"></ins>
-                      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                       `,
                     }}
                   />
@@ -168,6 +167,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardTitleTypography={"h5"}
                             cardDate={formatDates(firstLatestHighlightPosts[0].modified)}
                             cardSlug={firstLatestHighlightPosts[0].slug}
+                            width={''}
+                            cardExcerpt={''} 
                             />
                           </Grid>
                         </Grid>
@@ -187,6 +188,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                                 cardTitleTypography={"h6"}
                                 cardDate={formatDates(modified)}
                                 cardSlug={slug}
+                                width={''}
+                                cardExcerpt={''} 
                                 />
                               </Grid>
                             )
@@ -210,7 +213,6 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                         data-ad-slot="2994661634"
                         data-ad-format="auto"
                         data-full-width-responsive="true"></ins>
-                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                         `,
                       }}
                     />
@@ -232,6 +234,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardTitleTypography={"h6"}
                             cardDate={formatDates(modified)}
                             cardSlug={slug}
+                            width={''}
+                            cardExcerpt={''} 
                             />
                           </Grid>
                         )
@@ -254,7 +258,6 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             data-ad-slot="1668109857"
                             data-ad-format="auto"
                             data-full-width-responsive="true"></ins>
-                            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                             `,
                           }}
                         />
@@ -277,7 +280,6 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                         data-ad-slot="1952015038"
                         data-ad-format="auto"
                         data-full-width-responsive="true"></ins>
-                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                         `,
                       }}
                     />
@@ -297,6 +299,8 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardTitleTypography={"h6"}
                             cardDate={formatDates(modified)}
                             cardSlug={slug}
+                            width={''}
+                            cardExcerpt={''} 
                             />
                           </Grid>
                         )
@@ -318,7 +322,6 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                         data-ad-slot="2937793647"
                         data-ad-format="auto"
                         data-full-width-responsive="true"></ins>
-                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                         `,
                       }}
                     />
