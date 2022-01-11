@@ -49,7 +49,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardCategory={highlightsPosts[0].categories[0].category_name}
                       cardCategorySlug={highlightsPosts[0].categories[0].category_slug}
                       cardTitle={highlightsPosts[0].title.rendered}
-                      cardDate={formatDates(highlightsPosts[0].modified)}
+                      cardDate={formatDates(highlightsPosts[0].date)}
                       cardExcerpt={highlightsPosts[0].excerpt.rendered}
                       cardSlug={highlightsPosts[0].slug}                 
                       />
@@ -61,7 +61,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardCategory={highlightsPosts[1].categories[0].category_name}
                       cardCategorySlug={highlightsPosts[1].categories[0].category_slug}
                       cardTitle={highlightsPosts[1].title.rendered}
-                      cardDate={formatDates(highlightsPosts[1].modified)}
+                      cardDate={formatDates(highlightsPosts[1].date)}
                       cardSlug={highlightsPosts[1].slug}
                       cardExcerpt={''}                      
                       />
@@ -71,7 +71,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       cardCategory={highlightsPosts[2].categories[0].category_name}
                       cardCategorySlug={highlightsPosts[2].categories[0].category_slug}
                       cardTitle={highlightsPosts[2].title.rendered}
-                      cardDate={formatDates(highlightsPosts[2].modified)}
+                      cardDate={formatDates(highlightsPosts[2].date)}
                       cardSlug={highlightsPosts[2].slug}
                       cardExcerpt={''} 
                       />
@@ -107,7 +107,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       <h4 className="title-border">Trending</h4>
                     </Typography>
                   </Grid>
-                  {trendingPosts.map(({fimg_url, categories, title, modified, slug}) => {
+                  {trendingPosts.map(({fimg_url, categories, title, date, slug}) => {
                     return (
                       <Grid item xs={12} sm={6} md={3} key={slug}>
                         <TrendingNewsCard
@@ -116,7 +116,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                         cardCategory={categories[0].category_name}
                         cardCategorySlug={categories[0].category_slug}
                         cardTitle={title.rendered}
-                        cardDate={formatDates(modified)}
+                        cardDate={formatDates(date)}
                         cardSlug={slug}
                         cardExcerpt={''} 
                         />
@@ -167,7 +167,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardCategorySlug={firstLatestHighlightPosts[0].categories[0].category_slug}
                             cardTitle={firstLatestHighlightPosts[0].title.rendered}
                             cardTitleTypography={"h5"}
-                            cardDate={formatDates(firstLatestHighlightPosts[0].modified)}
+                            cardDate={formatDates(firstLatestHighlightPosts[0].date)}
                             cardSlug={firstLatestHighlightPosts[0].slug}
                             width={''}
                             cardExcerpt={''} 
@@ -177,7 +177,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                       </Grid>
                       <Grid item xs={12} sm={12} md={7}>
                         <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
-                          {firstLatestPosts.map(({fimg_url, categories, title, modified, slug}) => {
+                          {firstLatestPosts.map(({fimg_url, categories, title, date, slug}) => {
                             return (
                               <Grid item xs={12} sm={6} md={6} key={slug}>
                                 <NewsCard 
@@ -188,7 +188,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                                 cardImage={fimg_url}
                                 cardTitle={title.rendered}
                                 cardTitleTypography={"h6"}
-                                cardDate={formatDates(modified)}
+                                cardDate={formatDates(date)}
                                 cardSlug={slug}
                                 width={''}
                                 cardExcerpt={''} 
@@ -224,7 +224,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                 <Grid container rowSpacing={2} mb={3} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
                   <Grid item xs={12} sm={12} md={9}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
-                      {secondLatestPosts.map(({fimg_url, categories, title, modified, slug}) => {
+                      {secondLatestPosts.map(({fimg_url, categories, title, date, slug}) => {
                         return (
                           <Grid item xs={12} sm={6} md={4} key={slug}>
                             <NewsCard 
@@ -235,7 +235,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardImage={fimg_url}
                             cardTitle={title.rendered}
                             cardTitleTypography={"h6"}
-                            cardDate={formatDates(modified)}
+                            cardDate={formatDates(date)}
                             cardSlug={slug}
                             width={''}
                             cardExcerpt={''} 
@@ -291,7 +291,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                   </Grid>
                   <Grid item xs={12}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 2 }}>
-                      {thirdLatestPosts.map(({fimg_url, categories, title, modified, slug}) => {
+                      {thirdLatestPosts.map(({fimg_url, categories, title, date, slug}) => {
                         return (
                           <Grid item xs={12} sm={6} md={3} key={slug}>
                             <NewsCard 
@@ -302,7 +302,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
                             cardImage={fimg_url}
                             cardTitle={title.rendered}
                             cardTitleTypography={"h6"}
-                            cardDate={formatDates(modified)}
+                            cardDate={formatDates(date)}
                             cardSlug={slug}
                             width={''}
                             cardExcerpt={''} 
@@ -343,7 +343,7 @@ export default function Home({ highlightsPosts, trendingPosts, firstLatestHighli
 }
 
 export const getStaticProps = async () => {
-  const reqPosts = await fetch("https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts?_fields=id,modified,link,title,content,excerpt,categories,slug,featured_media,fimg_url&per_page=26");
+  const reqPosts = await fetch("https://mubdmn-dev.crdps.xyz/wp-json/wp/v2/posts?_fields=id,date,link,title,content,excerpt,categories,slug,featured_media,fimg_url&per_page=26");
   const PostData = await reqPosts.json();
 
   const highlightsPosts = PostData.slice(0, 3);

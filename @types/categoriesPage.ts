@@ -1,6 +1,6 @@
 interface PostTypes {
     map(arg0: (
-            { fimg_url, categories, title, modified, slug }: { fimg_url: string; categories: any; title: any; modified: string; slug: string; }
+            { fimg_url, categories, title, date, slug }: { fimg_url: string; categories: any; title: any; date: string; slug: string; }
         ) => JSX.Element): 
     import("react").ReactNode;
     id: number;
@@ -8,7 +8,6 @@ interface PostTypes {
     title: string;
     excerpt: string;
     date: string;
-    modified: string;
     fimg_url: string;
     category_name: string;
     category_slug: string;
